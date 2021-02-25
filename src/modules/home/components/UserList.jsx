@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import get from "lodash/get";
 import { Link } from "react-router-dom";
 
-import { toLowerCase } from "../../../helpers/helpers";
+import { toLowerCase, getFormattedUserName } from "../../../helpers/helpers";
 import Table from "../../../components/table";
 import Input from "../../../components/input";
 
@@ -44,7 +44,9 @@ const UserList = () => {
     userList.map((user) => [
       user.name,
       user.company.name,
-      <Link to={`/posts/${user.id}`}>{user.name.split(" ")[0]} posts</Link>,
+      <Link className="user-list__link" to={`/posts/${user.id}`}>
+        {getFormattedUserName(user.name)}'s posts
+      </Link>,
     ]);
 
   return (
@@ -66,8 +68,9 @@ const UserList = () => {
           />
         </span>
       </div>
-
-      <Table headers={headers} rows={getRows()} />
+      <div className="user-list__table-wrapper">
+        <Table headers={headers} rows={getRows()} />
+      </div>
     </div>
   );
 };

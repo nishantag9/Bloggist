@@ -1,6 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit"
-import {getStorageItem, setStorageItem} from "../../../helpers/helpers";
-import {THEME_KEY, DEFAULT_THEME} from "../../../helpers/constants"
+import { createSlice } from "@reduxjs/toolkit";
+import { getStorageItem, setStorageItem } from "../../../helpers/helpers";
+import { THEME_KEY, DEFAULT_THEME } from "../../../helpers/constants";
 
 const getInitialThemeState = () => {
   var savedTheme = getStorageItem(THEME_KEY);
@@ -11,17 +11,13 @@ const getInitialThemeState = () => {
   return savedTheme;
 };
 
-
-const themeSlice = createSlice({
+const theme = createSlice({
   name: "Theme",
   initialState: getInitialThemeState(),
   reducers: {
-    setThemeAction(state, action) {
-      state = action.payload;
-    },
+    setThemeAction: (state, action) => action.payload,
   },
 });
 
-export const { setThemeAction } = themeSlice.actions;
-export const reducer = themeSlice.reducer;
-
+export const { setThemeAction } = theme.actions;
+export const reducer = theme.reducer;

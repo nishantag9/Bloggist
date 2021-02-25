@@ -1,3 +1,5 @@
+@import "mixins";
+
 * {
   margin: 0;
   padding: 0;
@@ -10,11 +12,70 @@ body {
 }
 
 .app-body {
+  @include mobile {
+    max-width: unset;
+  }
+  overflow: hidden;
+  max-width: 1280px;
   width: 100vw;
   height: 100vh;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-wrapper {
   background-color: var(--bg-1);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
   color: var(--text-primary);
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+button {
+  border: 0.1rem solid var(--highlight-primary);
+  color: var(--highlight-primary);
+  padding: 0.5rem 2rem;
+  background-color: transparent;
+  border-radius: 0.2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--highlight-primary);
+    color: var(--bg-1);
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:disabled{
+    border: 0.1rem solid var(--bg-4) !important;
+    color: var(--bg-4) !important;
+    background-color: transparent !important;
+    cursor: not-allowed;
+  }
+}
+
+.loader{
+  &__fixed{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

@@ -10,7 +10,7 @@ export default function Comments() {
   if (!comments) return null;
 
   return (
-    <div>
+    <div className="comment-list">
       {comments.map((item) => (
         <CommentItem item={item} />
       ))}
@@ -20,10 +20,12 @@ export default function Comments() {
 
 const CommentItem = ({ item }) => {
   return (
-    <div>
-      <p>{item.name}</p>
-      <p>{item.email}</p>
-      <p>{item.body}</p>
+    <div className="comment-item">
+      <div className="comment-item__info">
+        <p className="comment-item__name">{item.name}</p>
+        <p className="comment-item__email">{item.email}</p>
+      </div>
+      <p className="comment-item__text">{item.body}</p>
     </div>
   );
 };

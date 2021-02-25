@@ -1,14 +1,15 @@
 import React from "react";
 import Loader from "react-loader-spinner";
+import cx from 'classnames'
 
-function index() {
+function index({is_full_page, xs=false}) {
   return (
-    <div>
+    <div className={cx({"loader__fixed" : is_full_page})}>
       <Loader
         type="TailSpin"
         color="#00BFFF"
-        height={100}
-        width={100}
+        height={xs? 20: 50}
+        width={xs? 20 : 50}
       />
     </div>
   );

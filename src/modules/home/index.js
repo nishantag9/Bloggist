@@ -16,7 +16,7 @@ export default function Home() {
     dispatch(getUsers());
   }, [dispatch]);
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader is_full_page/>;
 
   return <UserList />;
 }

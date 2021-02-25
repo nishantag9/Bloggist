@@ -6,6 +6,7 @@ import store from "./configuration/store";
 import App from "./App";
 import ToastContainer from "./components/notifications";
 import "react-toastify/dist/ReactToastify.css";
+import "font-awesome/css/font-awesome.min.css"
 
 import "./styles/main.scss";
 

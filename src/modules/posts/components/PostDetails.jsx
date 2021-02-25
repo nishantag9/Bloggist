@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import Comments from "./Comments";
 import { deletePost, resetDetails, toggleComments } from "../redux/actions";
 import { DELETED } from "../../../helpers/constants";
+import Input from "../../../components/input";
+import Loader from "../../../components/loader";
 
 export default function PostDetails() {
   const { postId, userId } = useParams();
@@ -20,7 +23,10 @@ export default function PostDetails() {
   }, []);
 
   useEffect(() => {
-    if (deleting === DELETED) history.push(`/posts/${userId}`);
+    if (deleting === DELETED) {
+      toast.success("Post successfully deleted");
+      history.push(`/posts/${userId}`);
+    }
   }, [deleting, history, userId]);
 
   const handleDelete = () => {
@@ -36,7 +42,14 @@ export default function PostDetails() {
       element.push(item);
       if (i < arr.length - 1) {
         element.push(
-          <span style={{ backgroundColor: "grey" }}>{trimmedFilter}</span>
+          <span
+            style={{
+              backgroundColor: "var(--highlight-primary)",
+              color: "var(--bg-1)",
+            }}
+          >
+            {trimmedFilter}
+          </span>
         );
       }
     });
@@ -54,20 +67,47 @@ export default function PostDetails() {
   if (!postDetails) return null;
 
   return (
-    <div>
-      <input
-        type="text"
-        name="filter"
-        placeholder="Filter"
-        onChange={handleFilter}
-      />
-      <h4>{getFilteredText(postDetails.title)}</h4>
-      <p>{getFilteredText(postDetails.body)}</p>
-      {showComments && <Comments />}
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={handleToggleComments}>
-        {showComments ? "Hide" : "View"} Comments
-      </button>
+    <div className="post-details">
+      <div className="post-details__filter">
+        <Input
+          label="Filter Text"
+          type="text"
+          name="filter"
+          placeholder="Filter"
+          onChange={handleFilter}
+        />
+      </div>
+
+      <div className="post-details__data">
+        <div>
+          <h4>Title:</h4>
+          <h4>{getFilteredText(postDetails.title)}</h4>
+        </div>
+
+        <div>
+          <p>Body:</p>
+          <p>{getFilteredText(postDetails.body)}</p>
+        </div>
+      </div>
+
+      {showComments && (
+        <>
+          <h4 className="post-details__comments">Comments</h4>
+          <Comments />
+        </>
+      )}
+      <div className="post-details__actions">
+        {deleting ? (
+          <span className="post-details__delete-loader">
+            <Loader xs />
+          </span>
+        ) : (
+          <button onClick={handleDelete}>Delete</button>
+        )}
+        <button onClick={handleToggleComments}>
+          {showComments ? "Hide" : "View"} Comments
+        </button>
+      </div>
     </div>
   );
 }
