@@ -1,0 +1,21 @@
+.user-list{
+
+    margin: 0 auto;
+    padding: 2rem 0;
+    width: fit-content;
+
+    &__filters{
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        &--title{
+            margin-right: 1rem;
+        }
+
+        &--wrapper{
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.g-table{
+
+    color: var(--text-primary);
+    text-align: center;
+
+    &__header-cell{
+        background-color: var(--bg-2);
+        min-width: 20rem;
+        padding: .5rem 2rem;
+    }
+
+    &__cell{
+        background-color: var(--bg-3);
+        padding: .5rem 2rem;
+    }
+}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import get from "lodash/get";
+import { Link } from "react-router-dom";
 
 import { toLowerCase } from "../../../helpers/helpers";
 import Table from "../../../components/table";
-
-import { Link } from "react-router-dom";
+import Input from "../../../components/input";
 
 const headers = ["Name", "Company", "Blog Posts"];
 
@@ -48,19 +48,25 @@ const UserList = () => {
     ]);
 
   return (
-    <div>
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        onChange={handleFilter}
-      />
-      <input
-        type="text"
-        name="company.name"
-        placeholder="Company Name"
-        onChange={handleFilter}
-      />
+    <div className="user-list">
+      <div className="user-list__filters">
+        <p className="user-list__filters--title">Filters</p>
+        <span className="user-list__filters--wrapper">
+          <Input
+            type="text"
+            name="name"
+            placeholder="Name"
+            onChange={handleFilter}
+          />
+          <Input
+            type="text"
+            name="company.name"
+            placeholder="Company Name"
+            onChange={handleFilter}
+          />
+        </span>
+      </div>
+
       <Table headers={headers} rows={getRows()} />
     </div>
   );

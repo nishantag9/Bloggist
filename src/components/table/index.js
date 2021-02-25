@@ -2,11 +2,11 @@ import React from "react";
 
 const Table = ({ headers, rows }) => {
   return (
-    <table>
+    <table className="g-table">
       <thead>
         <tr>
           {headers.map((headerItem, i) => (
-            <th key={i}>{headerItem}</th>
+            <th className="g-table__header-cell" key={i}>{headerItem}</th>
           ))}
         </tr>
       </thead>
@@ -14,7 +14,7 @@ const Table = ({ headers, rows }) => {
         {rows.map((row, i) => (
           <tr key={i}>
             {row.map((rowItem, i) => (
-              <td key={i}>{rowItem}</td>
+              <td className="g-table__cell" key={i}>{rowItem}</td>
             ))}
           </tr>
         ))}

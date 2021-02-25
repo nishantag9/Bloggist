@@ -21,7 +21,6 @@ export const getPosts = (userId) => async (dispatch, getState) => {
   const {
     posts: { postsByUserId },
   } = getState();
-  debugger
   if (postsByUserId[userId]?.length) return;
   dispatch(getPostsLoading());
   try {

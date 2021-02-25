@@ -1,0 +1,19 @@
+.g-input {
+
+  &:not(:last-child){
+    margin-right: 2rem;
+  }
+
+  &__input {
+    border: 0.1rem solid var(--text-primary);
+    background-color: transparent;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    color: var(--text-primary);
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+  }
+}

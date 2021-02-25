@@ -5,6 +5,8 @@ import { getUsers } from "./redux/actions";
 import UserList from "./components/UserList";
 import Loader from "../../components/loader";
 
+import "./styles.scss"
+
 
 export default function Home() {
   const dispatch = useDispatch();
