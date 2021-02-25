@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {DELETED} from "../../../helpers/constants"
+import { DELETED } from "../../../helpers/constants";
 
 const initialState = {
   loading: true,
@@ -11,6 +11,9 @@ const initialState = {
   postsByUserId: {},
   postDetails: null,
   deleting: null,
+  commentsLoading: null,
+  comments: null,
+  showComments: false
 };
 
 const posts = createSlice({
@@ -68,12 +71,28 @@ const posts = createSlice({
     deleteFailed(state) {
       state.deleting = false;
     },
+    commentsLoading(state) {
+      state.commentsLoading = true;
+    },
+    commentsSucceeded(state, action) {
+      state.commentsLoading = false;
+      state.comments = action.payload;
+    },
+    commentsFailed(state) {
+      state.commentsLoading = false;
+    },
+    toggleCommentsAction(state, action){
+      state.showComments = action.payload
+    },
     resetPostDetails(state) {
       state.detailsByPostId = null;
       state.deleting = null;
       state.detailsLoading = true;
       state.detailsSuccess = null;
       state.detailsError = null;
+      state.comments = null;
+      state.commentsLoading = null;
+      state.showComments = false;
     },
   },
 });
@@ -88,6 +107,10 @@ export const {
   deleteRequested,
   deleteSucceeded,
   deleteFailed,
-  resetPostDetails
+  resetPostDetails,
+  commentsLoading,
+  commentsSucceeded,
+  commentsFailed,
+  toggleCommentsAction
 } = posts.actions;
 export const reducer = posts.reducer;

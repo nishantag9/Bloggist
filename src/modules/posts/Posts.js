@@ -12,7 +12,7 @@ export default function Posts() {
   const { loading, postsByUserId } = useSelector((state) => state.posts);
 
   useEffect(() => {
-    if (!postsByUserId[userId]?.length) dispatch(getPosts(userId));
+    dispatch(getPosts(userId));
   }, [dispatch, userId, postsByUserId]);
 
   if (loading) return <Loader />;

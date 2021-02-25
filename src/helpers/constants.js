@@ -2,9 +2,10 @@ export const BASE_URL = "https://jsonplaceholder.typicode.com"
 
 export const API = {
     getUsers : () => "/users",
-    getUserPosts : (userId) => `/posts?userId=${userId}`,
+    getUserPosts : (userId) => `/posts?userId=${userId}&skip=0&limit=5`,
     getPostDetails: (postId) => `/posts/${postId}`,
-    delete: (postId) => `/posts/${postId}`
+    delete: (postId) => `/posts/${postId}`,
+    getComments: (postId) => `/posts/${postId}/comments`
 }
 
 export const DELETED = "deleted"
