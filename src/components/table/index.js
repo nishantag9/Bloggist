@@ -5,16 +5,16 @@ const Table = ({ headers, rows }) => {
     <table>
       <thead>
         <tr>
-          {headers.map((headerItem) => (
-            <th>{headerItem}</th>
+          {headers.map((headerItem, i) => (
+            <th key={i}>{headerItem}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {rows.map((row) => (
-          <tr>
-            {row.map((rowItem) => (
-              <td>{rowItem}</td>
+        {rows.map((row, i) => (
+          <tr key={i}>
+            {row.map((rowItem, i) => (
+              <td key={i}>{rowItem}</td>
             ))}
           </tr>
         ))}

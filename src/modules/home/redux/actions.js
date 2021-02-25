@@ -5,8 +5,8 @@ import { getUsersLoading, getUsersSuccess, getUsersFailed } from "./reducer";
 export const getUsers = () => async (dispatch, getState) => {
   dispatch(getUsersLoading);
   try {
-    const payload = await axios.get(API.getUsers());
-    dispatch(getUsersSuccess(payload.data));
+    const response = await axios.get(API.getUsers());
+    dispatch(getUsersSuccess(response.data));
   } catch {
     dispatch(getUsersFailed);
   }
